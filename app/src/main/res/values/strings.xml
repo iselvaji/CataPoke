@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">CataPoke</string>
+    <string name="err_unable_to_load">Unable to load the data.</string>
+    <string name="err_connectivity">Network connection is unavailable.</string>
+    <string name="try_again">Try Again</string>
+    <string name="content_desc_image_desc">PokeImage</string>
+    <string name="content_desc_back_button">Back button</string>
+
+    <string name="capture_rate">Capture Rate : </string>
+    <string name="first_evolution">First Evolution [Evolves To] </string>
+    <string name="capture_rate_diff">Capture Rate Difference : </string>
+    <string name="err_unable_to_load_evolution">Unable to fetch the evolution details.</string>
+    <string name="evolution_details_not_present">Evolution details not present</string>
+
+</resources>
