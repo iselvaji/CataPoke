@@ -52,7 +52,7 @@ class PagingSourceTest {
     }
 
     @Test
-    fun test_paging_source_load_failure() = runBlocking {
+    fun `test paging source load failure`() = runBlocking {
 
         val error = HttpRequestTimeoutException(HttpRequestBuilder())
 
@@ -74,7 +74,7 @@ class PagingSourceTest {
     }
 
     @Test
-    fun test_paging_source_load_refresh_success() = runBlocking {
+    fun `test paging source load refresh success`() = runBlocking {
 
         val data = TestData.getSpeciesDto()
 
@@ -100,7 +100,7 @@ class PagingSourceTest {
     }
 
     @Test
-    fun test_user_paging_source_load_prepend_success()= runBlocking {
+    fun `test user paging source load prepend success`()= runBlocking {
 
         val data = TestData.getSpeciesDto()
 

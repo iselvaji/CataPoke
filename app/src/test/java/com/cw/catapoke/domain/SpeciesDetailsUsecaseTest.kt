@@ -27,16 +27,15 @@ class SpeciesDetailsUsecaseTest {
 
         // given
         val data = Resource.Success(getSpeciesDetails())
-
-        // when
         coEvery {
             speciesDetailsUsecase.getSpeciesDetails(1)
         } returns data
 
-        // then
+        // when
         val response = speciesDetailsUsecase.getSpeciesDetails(1).data
-        assert(response != null)
 
+        // then
+        assert(response != null)
         response!!.apply {
             assert(captureRate == 40)
             assert(flavorEntries.isNotEmpty())

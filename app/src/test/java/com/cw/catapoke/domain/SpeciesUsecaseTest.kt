@@ -36,11 +36,11 @@ class SpeciesUsecaseTest {
             emit(pagingData)
         }
 
-        // when
         coEvery {
             speciesUsecase.getSpeciesList()
         } returns data
 
+        // when
         val count = speciesUsecase.getSpeciesList().count()
 
         // then
