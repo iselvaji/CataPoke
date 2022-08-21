@@ -50,7 +50,7 @@ class SpeciesListScreenTest {
     fun test2_isSpeciesImage_Visible() {
         composeRule.waitUntilDoesNotExist(hasTestTag(Constants.TEST_TAG_PROGRESS))
         composeRule.onAllNodesWithContentDescription(composeRule.activity.getString(R.string.content_desc_image_desc))
-            .assertCountEquals(10)
+            .onFirst().assertExists()
     }
 
     @Test

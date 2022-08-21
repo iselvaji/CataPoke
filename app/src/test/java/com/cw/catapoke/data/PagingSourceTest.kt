@@ -12,9 +12,8 @@ import io.ktor.client.request.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.setMain
-import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -33,7 +32,7 @@ class PagingSourceTest {
     val instantExecutorRule = InstantTaskExecutorRule()
 
     @ExperimentalCoroutinesApi
-    private val testDispatcher = TestCoroutineDispatcher()
+    private val testDispatcher = StandardTestDispatcher()
 
     @Mock
     private lateinit var apiService: ApiService
@@ -44,11 +43,6 @@ class PagingSourceTest {
     fun setup() {
         Dispatchers.setMain(testDispatcher)
         pagingSource = SpeciesPagingSource(apiService)
-    }
-
-    @After
-    fun tearDown() {
-        testDispatcher.cleanupTestCoroutines()
     }
 
     @Test

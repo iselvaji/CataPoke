@@ -76,7 +76,7 @@ fun SpeciesDetailsScreen (
                         LoadImage(AppUtil.getImageUrl(it.id))
                         ContentText(stringResource(id = R.string.capture_rate) + it.captureRate.toString())
                     }
-                } else {
+                } else if(!state.isLoading){
                     SubHeaderText(stringResource(id = R.string.first_evolution))
                     ContentText(stringResource(R.string.evolution_details_not_present), Constants.TEST_TAG_EVOLUTION)
                 }
