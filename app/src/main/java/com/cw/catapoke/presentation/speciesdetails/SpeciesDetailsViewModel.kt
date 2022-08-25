@@ -14,7 +14,10 @@ import com.cw.catapoke.utils.AppUtil
 import com.cw.catapoke.utils.AppUtil.isPositiveCaptureRateDiff
 import com.cw.catapoke.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,6 +33,14 @@ class SpeciesDetailsViewModel
 
     init {
         getSpeciesDetails()
+    }
+
+    fun onUiEvent(event: SpeciesDetailsScreenEvent) {
+        when(event) {
+            is SpeciesDetailsScreenEvent.FetchSpeciesDetails -> {
+                getSpeciesDetails()
+            }
+        }
     }
 
     /**
@@ -52,6 +63,7 @@ class SpeciesDetailsViewModel
                     val getSpeciesDetailsTask = async(start = CoroutineStart.LAZY) {
                         detailsUsecase.getSpeciesDetails(currentSpeciesId)
                     }
+
                     val getSpeciesEvolutionDetailsTask = async(start = CoroutineStart.LAZY) {
                         evolutionDetailsUsecase.getSpeciesEvolutionByOrder(currentSpeciesId, evolutionOrder)
                     }

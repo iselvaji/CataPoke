@@ -25,6 +25,9 @@ class SpeciesListViewModel @Inject constructor(
             is SpeciesScreenEvent.OnSpeciesSelect -> {
                 event.navigator.navigate(SpeciesDetailsScreenDestination(event.id))
             }
+            is SpeciesScreenEvent.FetchSpeciesData -> {
+                getSpeciesData()
+            }
         }
     }
 

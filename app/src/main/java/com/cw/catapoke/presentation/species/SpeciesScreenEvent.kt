@@ -7,5 +7,6 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
  *
  */
 sealed class SpeciesScreenEvent {
+    object FetchSpeciesData: SpeciesScreenEvent()
     data class OnSpeciesSelect(val id: Int,  val navigator: DestinationsNavigator): SpeciesScreenEvent()
 }
