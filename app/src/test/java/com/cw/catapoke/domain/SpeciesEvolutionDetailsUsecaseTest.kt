@@ -30,11 +30,11 @@ class SpeciesEvolutionDetailsUsecaseTest {
         val data = Resource.Success(2)
 
         coEvery {
-            speciesEvolutionDetailsUsecase.getSpeciesEvolutionByOrder(1, AppUtil.EvolutionOrder.First)
+            speciesEvolutionDetailsUsecase.getSpeciesEvolutionByOrder(1, AppUtil.EvolutionOrder.First, any())
         } returns data
 
         // when
-        val actual = speciesEvolutionDetailsUsecase.getSpeciesEvolutionByOrder(1, AppUtil.EvolutionOrder.First)
+        val actual = speciesEvolutionDetailsUsecase.getSpeciesEvolutionByOrder(1, AppUtil.EvolutionOrder.First, 1)
 
         // then
         assert(actual is Resource.Success)

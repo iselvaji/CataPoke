@@ -55,9 +55,9 @@ class SpeciesDetailsViewModelTest {
             speciesDetailsUsecase.getSpeciesDetails(any())
         } returns speciesDetailsResponse
 
-        val speciesEvolutionResponse = Resource.Success(2)
+        val speciesEvolutionResponse = Resource.Success(1)
         coEvery {
-            speciesEvolutionDetailsUsecase.getSpeciesEvolutionByOrder(any(), any())
+            speciesEvolutionDetailsUsecase.getSpeciesEvolutionByOrder(any(), any(), any())
         } returns speciesEvolutionResponse
 
         // when
@@ -87,7 +87,7 @@ class SpeciesDetailsViewModelTest {
 
         val speciesEvolutionLoading = Resource.Loading<Int>(isLoading = true)
         coEvery {
-            speciesEvolutionDetailsUsecase.getSpeciesEvolutionByOrder(any(), any())
+            speciesEvolutionDetailsUsecase.getSpeciesEvolutionByOrder(any(), any(), any())
         } returns speciesEvolutionLoading
 
         // when
@@ -113,7 +113,7 @@ class SpeciesDetailsViewModelTest {
 
         val errorSpeciesEvolution = Resource.Error<Int>(message = "Test Evolution Error")
         coEvery {
-            speciesEvolutionDetailsUsecase.getSpeciesEvolutionByOrder(any(), any())
+            speciesEvolutionDetailsUsecase.getSpeciesEvolutionByOrder(any(), any(), any())
         } returns errorSpeciesEvolution
 
         // when
@@ -143,7 +143,7 @@ class SpeciesDetailsViewModelTest {
 
         val errorSpeciesEvolution = Resource.Error<Int>(message = "Test Evolution Error")
         coEvery {
-            speciesEvolutionDetailsUsecase.getSpeciesEvolutionByOrder(any(), any())
+            speciesEvolutionDetailsUsecase.getSpeciesEvolutionByOrder(any(), any(), any())
         } returns errorSpeciesEvolution
 
         // when

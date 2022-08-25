@@ -63,29 +63,43 @@ class SpeciesDetailsViewModel
                     val getSpeciesDetailsTask = async(start = CoroutineStart.LAZY) {
                         detailsUsecase.getSpeciesDetails(currentSpeciesId)
                     }
-
-                    val getSpeciesEvolutionDetailsTask = async(start = CoroutineStart.LAZY) {
-                        evolutionDetailsUsecase.getSpeciesEvolutionByOrder(currentSpeciesId, evolutionOrder)
-                    }
-
                     val currentSpecialDetailsResponse = getSpeciesDetailsTask.await()
-                    val evolutionDetailsResponse = getSpeciesEvolutionDetailsTask.await()
 
-                    evolutionDetailsResponse.let {
-                        when(it) {
+                    currentSpecialDetailsResponse.apply {
+                        when(this) {
                             is Resource.Success -> {
 
-                                val getSpeciesByOderTask = async(start = CoroutineStart.LAZY) {
-                                    it.data?.let { it1 ->
-                                        detailsUsecase.getSpeciesDetails(it1)
-                                    }
+                               val evolutionUrlId =  AppUtil.getId(this.data?.evolutionChainUrl?.url)
+
+                                val getSpeciesEvolutionDetailsTask = async(start = CoroutineStart.LAZY) {
+                                    evolutionDetailsUsecase.getSpeciesEvolutionByOrder(evolutionUrlId, evolutionOrder, currentSpeciesId)
                                 }
 
-                                val specialDetailsByEvolutionOrderResponse = getSpeciesByOderTask.await()
+                                val evolutionDetailsResponse = getSpeciesEvolutionDetailsTask.await()
 
-                                updateUIState(
-                                    currentSpecialDetailsResponse,
-                                    specialDetailsByEvolutionOrderResponse)
+                                evolutionDetailsResponse.let {
+                                    when(it) {
+                                        is Resource.Success -> {
+                                            it.data?.let { speciesId ->
+                                                if(speciesId > 0) {
+                                                    val getSpeciesByOderTask = async(start = CoroutineStart.LAZY) {
+                                                        detailsUsecase.getSpeciesDetails(speciesId)
+                                                    }
+                                                    val specialDetailsByEvolutionOrderResponse = getSpeciesByOderTask.await()
+                                                    updateUIState(
+                                                        currentSpecialDetailsResponse,
+                                                        specialDetailsByEvolutionOrderResponse)
+                                                }
+                                                else {
+                                                    updateUIState(currentSpecialDetailsResponse)
+                                                }
+                                            }
+                                        }
+                                        else -> {
+                                            updateUIState(currentSpecialDetailsResponse)
+                                        }
+                                    }
+                                }
                             }
                             else -> {
                                 updateUIState(currentSpecialDetailsResponse)

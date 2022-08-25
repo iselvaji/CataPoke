@@ -9,5 +9,6 @@ object Constants {
     const val TEST_TAG_CAPTURE_RATE_DIFF = "TAG_CAPTURE_RATE_DIFF"
 
     const val BASE_URL_IMAGE = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
+    const val IMG_PNG_EXT = ".png"
 
 }

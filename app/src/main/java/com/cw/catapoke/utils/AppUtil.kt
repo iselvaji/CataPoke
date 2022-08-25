@@ -1,6 +1,7 @@
 package com.cw.catapoke.utils
 
 import com.cw.catapoke.utils.Constants.BASE_URL_IMAGE
+import com.cw.catapoke.utils.Constants.IMG_PNG_EXT
 import java.lang.Exception
 
 object AppUtil {
@@ -17,7 +18,7 @@ object AppUtil {
     }
 
     fun getImageUrl(id: Int) : String {
-        return "$BASE_URL_IMAGE$id.png"
+        return BASE_URL_IMAGE + id + IMG_PNG_EXT
     }
 
     fun isPositiveCaptureRateDiff(currentRate:Int, evolutionRate: Int) : Pair<Int, Boolean> {

@@ -10,6 +10,6 @@
     <string name="first_evolution">First Evolution [Evolves To] </string>
     <string name="capture_rate_diff">Capture Rate Difference : </string>
     <string name="err_unable_to_load_evolution">Unable to fetch the evolution details.</string>
-    <string name="evolution_details_not_present">Evolution details not present</string>
+    <string name="evolution_details_not_present">Evolution details are not available</string>
 
 </resources>
